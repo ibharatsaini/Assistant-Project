@@ -22,7 +22,7 @@ engine1.setProperty('voice',voice[0].id)
 firstname='Bharat'
 lastname='saini'
 fullname='Bharat saini'
-email='bharat65432101@gmail.com'
+email='yourmain@email.com'
 sched=[]
 price_rem={}
 links_rem={}
@@ -56,7 +56,7 @@ def check_amazon():
         file.read(json.loads(price_rem))
         file.read(json.loads(links_rem))
     if price_rem['Amazon']!=0:
-        headers={'user-agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.87 Safari/537.36'}
+        headers={'user-agent':'your usernheaders'}
         webbrowser.open(links_rem['Amazon'])
         req = requests.get(url,headers=headers)
         soup=bs4.BeautifulSoup(req.text , 'lxml')
@@ -67,7 +67,7 @@ def check_amazon():
             links_rem['Amazon'].replace(' ','+')
             print(links_rem['Amazon'])
     elif price_rem['Flipkart']!=0:
-        headers={'user-agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.87 Safari/537.36'}
+        headers={'user-agent':'your user headers'}
         webbrowser.open(links_rem['Flipkart'])
         req = requests.get(links_rem['Flipkart'],headers=headers)
         soup=bs4.BeautifulSoup(req.text , 'lxml')
@@ -126,7 +126,7 @@ def speak(audio):
                 print('Sorry sir! My Bad')
         elif ('read news') in command:
             try:
-                link='https://newsapi.org/v2/top-headlines?country=in&apiKey=62273fa87dce42649fd406ea3e623feb'
+                link='https://newsapi.org/v2/top-headlines?country=in&apiKey=yourapikey'
                 response=requests.get(link)
                 text=response.text
                 json_con=json.loads(text)
@@ -136,7 +136,7 @@ def speak(audio):
                 speak('Sorry sir')
         elif ("todays" and "weather") in command:
             try:
-                link2='http://api.apixu.com/v1/current.json?key=1b201670369a4ccfac0132149193107&q=delhi'
+                link2='http://api.apixu.com/v1/current.json?key=yourapikey'
                 response=requests.get(link)
                 text2=response.text
                 json_tem=json.loads(text2)
@@ -168,7 +168,7 @@ def speak(audio):
                     except Exception as e:
                         print('could not get you',e)
                     try:
-                        driver=webdriver.Chrome('C:\\Users\\VISHAL SAINI\\Desktop\\python\\Jarvis\\chromedriver.exe')
+                        driver=webdriver.Chrome('path to the chrome driver\\chromedriver.exe')
                         driver.get('https://www.facebook.com/') 
                         print("Opened facebook") 
                         time.sleep(5) 
@@ -291,7 +291,7 @@ def speak(audio):
                       site=listen_me.recognize_google(audio,language='en-in')
             if 'Amazon' in site:
                 amazon_prod=product
-                headers={'user-agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.87 Safari/537.36'}
+                headers={'user-agent':'your user agent'}
                 amazon_url=('https://www.amazon.com/s?k='+amazon_prod)
                 webbrowser.open(amazon_url)
                 print('GO shop')
@@ -317,7 +317,7 @@ def speak(audio):
                     check_amazon()
             elif 'Flipkart' in site:
                 flipkart_prod=product
-                headers={'user-agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.87 Safari/537.36'}
+                headers={'user-agent':'your user agent'}
                 flipkart_url=('https://www.flipkart.com/search?q='+flipkart_prod)
                 webbrowser.open(flipkart_url)
                 print('Happy shopping')
@@ -349,7 +349,7 @@ def speak(audio):
                     listen_me.pause_threshold=1
                     audio=listen_me.listen(source15)
                     input11=listen_me.recognize_google(audio, language='en-in')
-                google_url=('https://www.google.com/search?source=hp&ei=CAJIXenvHMr79QOpoLWYCA&q='+input11)
+                google_url=('https://www.google.com/search?source=hp&ei='+input11)
                 speak('how manu suggestions should i give?')
                 with speech_recognition.Microphone() as source16:
                     listen_me=speech_recognition.Recognizer()
@@ -372,7 +372,7 @@ def speak(audio):
                 file.write(json.dumps(sched))
         elif ('my' and 'schedule') in command:
             with open('assistant.json','r') as file:
-                data=file.read(json.load(sched))
+                data=file.read(json.load(sched))3
             speak(data)
             
               
